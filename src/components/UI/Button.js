@@ -32,6 +32,7 @@ const ButtonSerach = styled.button`
     border-radius: 100px;
     font-size: 1rem;
     margin-left: -3rem;
+    transition: all .2s;
     cursor: pointer;
 
     &:active {
