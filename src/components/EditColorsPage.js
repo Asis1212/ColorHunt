@@ -17,8 +17,16 @@ const TermColorPage = (props) => {
         props.changeColor(colorCode, props.index);
     }
 
+    const onBlurEditMode = (event) => {
+        if(editMode) {
+            if(event.target.nodeName === 'DIV') {
+                setEditMode(false);
+            }
+        }
+    }
+
     return (
-        <Container color={props.color}>
+        <Container color={props.color} onClick={onBlurEditMode}>
             <DivColorCode>
                 {editMode && (
                     <DivEdit>
@@ -41,6 +49,8 @@ const TermColorPage = (props) => {
 export default TermColorPage;
 
 const Container = styled.div`
+    flex-grow: 1;
+    width: 100%;
     background-color: ${props => props.color};
 
 

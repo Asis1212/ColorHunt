@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ColorPart = (props) => {
   let navigate = useNavigate();
+
   const copyCodeColor = (event) => {
     let codeColor = event.target.innerText;
     navigator.clipboard.writeText(codeColor);
@@ -13,7 +14,7 @@ const ColorPart = (props) => {
     }, 1000);
   }
 
-  const openNewPage = (event) => {
+  const openPageOfClickedColor = (event) => {
     if(event.target.nodeName === 'DIV') {
       setTimeout(() => {
         navigate(`pageColor/${props.id}`);
@@ -22,10 +23,10 @@ const ColorPart = (props) => {
   }
 
   return (
-    <ContainerColor onClick={openNewPage} length={props.colors.length}>
-      {props.colors.map((colorCode)=> {
+    <ContainerColor onClick={openPageOfClickedColor} length={props.colors.length}>
+      {props.colors.map((colorCode, index)=> {
         return (
-            <Area key={colorCode} color={colorCode}>
+            <Area key={colorCode} color={colorCode} span={props.colors.length - index}>
                 <SpanColorCode onClick={copyCodeColor}>{colorCode}</SpanColorCode>
             </Area>);
       })}
@@ -36,34 +37,25 @@ const ColorPart = (props) => {
 export default ColorPart;
 
 const ContainerColor = styled.div`
-    grid-row: 1 / 2;
-    border-radius: 8px;
-    
+    border-radius: 10px;
+    overflow: hidden;
+    height: 80%;
+
     display: grid;
     grid-template-rows: repeat(${props => props.length}, 1fr);
-
+    grid-auto-rows: 1fr;
 `;
 
 const Area = styled.div`
+    grid-row: span ${props => props.span};
     background-color: ${props => props.color};
     cursor: pointer;
-
     display: flex;
     align-items: end;
 
     &:hover span{
         opacity: 1;
         transform: translateY(0);
-    }
-
-    &:first-child {
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-
-    &:last-child {
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
     }
 `;
 

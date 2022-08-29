@@ -1,51 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from "styled-components";
 import { useParams, useNavigate } from 'react-router-dom';
 
-import TermColorPage from '../components/TermColorPage';
+import EditColorsPage from '../components/EditColorsPage';
+import { ColorsListContext } from '../context/colors-context';
 
 
-const ColorPage = (props) => {
+const ColorPage = () => {
+    const {arrayOfColors, setArrayOfColors} = useContext(ColorsListContext);
+
     let {id} = useParams();
     const navigate = useNavigate();
 
     const [listOfColors, setListOfColors] = useState([]);
 
-    let itemColor = props.list.find((item) => {
+    let itemColor = arrayOfColors.find((item) => {
         return item.id === parseInt(id);
     });
+    let index = arrayOfColors.indexOf(itemColor);
     
     useEffect(() => {
-        setTimeout(() => {
-            setListOfColors(itemColor.colors);  
-        }, 0);
-        
+        setListOfColors(itemColor.colors);  
     }, [itemColor]);
 
-    const newColor = (colorCode, index) => {
-        const newArray = [...listOfColors];
-        newArray[index] = colorCode;
-        setListOfColors(newArray);
-        itemColor.colors = [...newArray];
+    const newColor = (colorCode, indexColor) => {
+        const newArrayOfColors = [...arrayOfColors];
+        const colors = [...listOfColors];
+        colors[indexColor] = colorCode;
+        setListOfColors(colors);
+        newArrayOfColors[index].colors = [...colors];
+        setArrayOfColors(newArrayOfColors);
     }
 
 
     document.addEventListener('keyup', (event) => {
-        
         if (event.code === 'Space') {
-            id = parseInt(id) + 1;
-            if(props.list.length >= id ) {
-                navigate(`../pageColor/${id}`, {replace:true});
-            } else {
-                navigate(`../`, {replace:true});
+            index++;
+            if(arrayOfColors.length === index) {
+                index = 0;
             }
+            id = arrayOfColors[index].id;
+            navigate(`../pageColor/${id}`, {replace:true});
         }
     });
 
         return (
             <Container length={listOfColors.length}>
                 {listOfColors.map((colorCode, index) => {
-                    return <TermColorPage key={index} color={colorCode} index={index} changeColor={newColor} />
+                    return <EditColorsPage key={index} color={colorCode} index={index} changeColor={newColor} />
                 })}
             </Container>
         )
@@ -53,15 +55,13 @@ const ColorPage = (props) => {
 
     export default ColorPage;
 
-    const Container = styled.div`
-overflow: hidden;
-  display: grid;
-  grid-template-rows: calc(100vh - 7rem);
-  grid-template-columns: repeat(${props => props.length}, 1fr);
+const Container = styled.div`
+  height: 95vh;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
 
   @media only screen and (max-width: 715px) {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(${props => props.length}, calc(calc(100vh - 7rem) / ${props => props.length}));
+        flex-direction: column;
     }
 `;

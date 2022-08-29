@@ -3,30 +3,67 @@
     "colors": ["#FFF38C", "#F0E161", "#D9CB50", "#C0B236"],
     "creatorName": "Elad",
     "date": "2022-08-12T03:24:00",
-    "upvotesCount": 14
+    "upvotesCount": 14,
+    "tags": ["Yellow"]
   }, {
     "id": 2,
     "colors": ["#781C68", "#319DA0", "#FFD39A", "#FFF5E1"],
     "creatorName": "Asis",
-    "date": "2022-08-17T03:24:00",
-    "upvotesCount": 34
+    "date": "2022-08-20T03:24:00",
+    "upvotesCount": 34,
+    "tags": ["Purple", "Green", "Beige", "Grey"]
   }, {
     "id": 3,
     "colors": ["#F5E8C7", "#ECCCB2", "#DEB6AB", "#AC7088"],
     "creatorName": "Asis",
     "date": "2022-04-17T03:24:00",
-    "upvotesCount": 17
+    "upvotesCount": 17,
+    "tags": ["Beige", "Pink"]
   }, {
     "id": 4,
     "colors": ["#1C3879", "#607EAA", "#EAE3D2", "#F9F5EB", "#FFF5E1"],
     "creatorName": "Asis",
     "date": "2022-06-22T03:24:00",
-    "upvotesCount": 25
+    "upvotesCount": 83,
+    "tags": ["Blue", "Grey", "White", "Beige"]
   }, {
     "id": 5,
     "colors": ["#FFDBA4", "#FFE9AE", "#C1EFFF"],
     "creatorName": "Asis",
+    "date": "2022-07-02T03:24:00",
+    "upvotesCount": 100,
+    "tags": ["Beige", "Yellow", "Blue"]
+  },
+  {
+    "id": 6,
+    "colors": ["#42855B", "#90B77D", "#D2D79F"],
+    "creatorName": "Asis",
+    "date": "2022-08-23T03:24:00",
+    "upvotesCount": 2,
+    "tags": ["Green"]
+  },
+  {
+    "id": 7,
+    "colors": ["#A66CFF", "#9C9EFE", "#AFB4FF", "#B1E1FF"],
+    "creatorName": "Asis",
+    "date": "2022-05-15T03:24:00",
+    "upvotesCount": 23,
+    "tags": ["Purple", "Blue"]
+  },
+  {
+    "id": 8,
+    "colors": ["#2C3333", "#395B64", "#A5C9CA", "#E7F6F2"],
+    "creatorName": "Asis",
+    "date": "2022-03-02T03:24:00",
+    "upvotesCount": 65,
+    "tags": ["Black", "Navy", "Blue"]
+  },
+  {
+    "id": 9,
+    "colors": ["#FFF9CA", "#FFDEB4", "#EDDFB3", "#FFB4B4", "#B2A4FF"],
+    "creatorName": "Asis",
     "date": "2022-07-22T03:24:00",
-    "upvotesCount": 40
+    "upvotesCount": 40,
+    "tags": ["Yellow", "Beige", "Brown", "Pink", "Purple"]
   }
 ]

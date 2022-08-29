@@ -10,6 +10,9 @@ const Input = (props) => {
   const blurHandler = () => {
     props.exit();
   }
+  const focusHandler = () => {
+    props.focusHandler();
+  }
 
   return (
     <InputElement

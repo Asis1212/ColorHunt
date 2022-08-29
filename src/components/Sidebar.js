@@ -2,33 +2,19 @@ import React from 'react';
 import styled from "styled-components";
 import Button from './UI/Button';
 
-import IconTextButton from './UI/IconTextButton';
-
-
-
-const titlesOfButtons = [{ id: 1, text: 'New', icon:'star' }, { id: 2, text: 'Popular', icon: 'rocket' }, { id: 3, text: 'Random', icon: 'cycle' }];
+const titlesOfButtons = [{ id: 'date', text: 'New', icon:'star' }, { id: 'popular', text: 'Popular', icon: 'rocket' }, { id: 'rand', text: 'Random', icon: 'cycle' }];
 
 const Sidebar = (props) => {
-
-    const textButton = (text, iconName) => {
-        return (
-            <IconTextButton 
-            text={text}
-            icon={iconName} 
-            isMenu={true} />
-        )
-    }
     return (
         <SidebarContainer>
             <SidebarMenu>
                 {titlesOfButtons.map(title => (
                     <Button
                         key={title.id}
-                        isMenu={true}
-                        text={textButton(title.text, title.icon)}
                         id={title.id}
-                        change={props.changeColor}
-                        bg={props.clickedButton === title.id && true} />
+                        text={title.text}
+                        icon={title.icon} 
+                        sidebarButton={true} />
                 ))}
             </SidebarMenu>
         </SidebarContainer>
@@ -38,11 +24,6 @@ const Sidebar = (props) => {
 export default Sidebar;
 
 const SidebarContainer = styled.div`
-    margin: 0.5rem;
-
-    @media only screen and (max-width: 950px) {
-        margin: 0.5rem;
-    }
     @media only screen and (max-width: 715px) {
         background-color: #fff;
         position: fixed;
@@ -51,20 +32,17 @@ const SidebarContainer = styled.div`
         width: 100%;
         margin: 0;
         padding-bottom: 1vh;
+        z-index: 20;
     }
-    
 `;
 
 const SidebarMenu = styled.div`
   background-color: #fff;
-  grid-row: 2/-1;
 
   display: flex;
   flex-direction: column;
 
   @media only screen and (max-width: 715px) {
-
-    display: flex;
     flex-direction: row;
     justify-content: space-around;
   }

@@ -1,29 +1,17 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import styled from "styled-components";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-import Box from './Box';
+import BoxColor from './BoxColor';
+import { ColorsListContext } from '../context/colors-context';
 
-const Colors = (props) => {
-  let listColors = props.list.slice();
-  if(props.clickedButton === 3) {
-    listColors = props.list;
-  }
-  else if(props.clickedButton === 2) {
-    listColors.sort((a,b) => {
-      return b.upvotesCount - a.upvotesCount;
-    });
-  } else if(props.clickedButton === 1) {
-    listColors.sort((a,b) => {
-      return b.date - a.date;
-    });
-  }
+
+const Colors = () => {
+  const {arrayOfColors} = useContext(ColorsListContext);
 
   return (
     <ContainerPage>
-        {listColors.map(item => (
-            <Box key={item.id} item={item}/>
+        {arrayOfColors.map((item, index) => (
+            <BoxColor key={item.id} item={item} index={index}/>
         ))}
     </ContainerPage>
   )
@@ -32,21 +20,27 @@ const Colors = (props) => {
 export default Colors;
 
 const ContainerPage = styled.div`
-    grid-column: 2/11;
-    margin-top: 1rem ;
-    margin-left: 2rem;
+    width: 100%;
+    margin-left: 2.5rem;
+    padding-bottom: 2rem;
     background-color: #fff;
 
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(250px, 1fr);
+    column-gap: 2rem; 
+    row-gap: 1rem;
+
+    @media only screen and (max-width: 1100px) {
+      grid-template-columns: repeat(3, 1fr);
+    } 
+    @media only screen and (max-width: 850px) {
+      grid-template-columns: repeat(2, 1fr);
+    } 
 
     @media only screen and (max-width: 715px) {
-        margin-left: -1rem;
-    }
-    @media only screen and (max-width: 660px) {
-        justify-content: center;
-        margin-right: 1rem;
-    }
+      margin-left: 0;
+      padding-bottom: 5rem;
+      justify-items: center;
+    } 
 `;
